@@ -2,11 +2,429 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Veille Business Brisquard</title>
-<style>body{font-family:sans-serif;text-align:center;padding:60px;color:#1e3a5f}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille Business — Brisquard · 15 April 2026</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f4f1;
+    --surface: #ffffff;
+    --surface2: #f0ede8;
+    --border: #e2ddd6;
+    --text: #1a1916;
+    --text2: #6b6660;
+    --text3: #9b9590;
+    --accent: #1e3a5f;
+    --accent-light: #e8eef6;
+    --forte: #dc2626;
+    --forte-bg: #fef2f2;
+    --forte-border: #fecaca;
+    --moyenne: #d97706;
+    --moyenne-bg: #fffbeb;
+    --moyenne-border: #fde68a;
+    --surveiller: #059669;
+    --surveiller-bg: #ecfdf5;
+    --surveiller-border: #a7f3d0;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+  }
+
+  body {
+    font-family: 'Satoshi', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--accent);
+    padding: 0 32px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .logo-text { color: #fff; font-weight: 700; font-size: 16px; }
+  .logo-sub { color: rgba(255,255,255,.6); font-size: 12px; font-weight: 500; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .weather-widget {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.1); border-radius: 20px;
+    padding: 6px 14px;
+  }
+  .weather-icon { font-size: 18px; }
+  .weather-info { }
+  .weather-temp { color: #fff; font-size: 14px; font-weight: 700; }
+  .weather-city { color: rgba(255,255,255,.6); font-size: 11px; }
+  .header-date { color: rgba(255,255,255,.7); font-size: 13px; font-weight: 500; }
+
+  /* MAIN */
+  .main { max-width: 1200px; margin: 0 auto; padding: 32px; }
+
+  /* HERO */
+  .hero {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 28px 32px;
+    margin-bottom: 24px; box-shadow: var(--shadow);
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .hero-left { }
+  .hero-title { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .hero-sub { color: var(--text2); font-size: 14px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent-light); color: var(--accent);
+    border: 1px solid #c5d8ef; border-radius: 20px;
+    padding: 5px 14px; font-size: 12px; font-weight: 600; margin-top: 10px;
+  }
+  .confidential {
+    display: flex; align-items: center; gap: 6px;
+    background: #fff8e6; border: 1px solid #fde68a; border-radius: 8px;
+    padding: 10px 16px; font-size: 12px; color: #92400e; font-weight: 600;
+  }
+
+  /* KPI ROW */
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 20px 24px; border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .kpi.forte { border-top: 3px solid var(--forte); }
+  .kpi.moyenne { border-top: 3px solid var(--moyenne); }
+  .kpi.surveiller { border-top: 3px solid var(--surveiller); }
+  .kpi.total { border-top: 3px solid var(--accent); }
+  .kpi-label { font-size: 12px; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+  .kpi-value { font-size: 32px; font-weight: 800; margin: 6px 0 4px; }
+  .kpi.forte .kpi-value { color: var(--forte); }
+  .kpi.moyenne .kpi-value { color: var(--moyenne); }
+  .kpi.surveiller .kpi-value { color: var(--surveiller); }
+  .kpi.total .kpi-value { color: var(--accent); }
+  .kpi-desc { font-size: 12px; color: var(--text3); }
+
+  /* FILTERS */
+  .filters-bar {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 14px 20px;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    box-shadow: var(--shadow);
+  }
+  .filter-label { font-size: 13px; font-weight: 600; color: var(--text2); white-space: nowrap; }
+  .chip {
+    padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    cursor: pointer; border: 1.5px solid var(--border); background: transparent;
+    color: var(--text2); transition: all .15s; font-family: inherit;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip.active { border-color: transparent; color: #fff; }
+  .chip[data-p="all"].active { background: var(--accent); }
+  .chip[data-p="FORTE"].active { background: var(--forte); }
+  .chip[data-p="MOYENNE"].active { background: var(--moyenne); }
+  .chip[data-p="A_SURVEILLER"].active { background: var(--surveiller); }
+  .result-count { margin-left: auto; font-size: 13px; color: var(--text2); }
+
+  /* CARDS */
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px;
+  }
+  .card {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden;
+    box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+  .card.hidden { display: none; }
+
+  .card-top {
+    padding: 18px 20px 14px;
+    border-left: 4px solid var(--border);
+  }
+  .card.prio-FORTE .card-top { border-left-color: var(--forte); }
+  .card.prio-MOYENNE .card-top { border-left-color: var(--moyenne); }
+  .card.prio-A_SURVEILLER .card-top { border-left-color: var(--surveiller); }
+
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .card-name { font-size: 17px; font-weight: 800; }
+  .prio-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+    white-space: nowrap;
+  }
+  .prio-FORTE { background: var(--forte-bg); color: var(--forte); border: 1px solid var(--forte-border); }
+  .prio-MOYENNE { background: var(--moyenne-bg); color: var(--moyenne); border: 1px solid var(--moyenne-border); }
+  .prio-A_SURVEILLER { background: var(--surveiller-bg); color: var(--surveiller); border: 1px solid var(--surveiller-border); }
+
+  .card-sector { font-size: 12px; color: var(--text2); margin-bottom: 10px; font-weight: 500; }
+  .card-activite { font-size: 13px; color: var(--text2); line-height: 1.5; margin-bottom: 12px; }
+
+  .card-deal {
+    background: var(--surface2); border-radius: 8px; padding: 12px 14px;
+    margin: 0 20px 14px;
+  }
+  .deal-row { display: flex; gap: 8px; font-size: 13px; margin-bottom: 4px; }
+  .deal-row:last-child { margin-bottom: 0; }
+  .deal-label { color: var(--text2); font-weight: 500; min-width: 70px; flex-shrink: 0; }
+  .deal-value { color: var(--text); font-weight: 600; }
+
+  .card-opp {
+    padding: 0 20px 14px;
+  }
+  .card-opp-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .card-opp-text { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+  .card-footer {
+    padding: 12px 20px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface2);
+  }
+  .timing-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 8px;
+    background: var(--accent-light); color: var(--accent);
+  }
+  .profil-badge {
+    font-size: 11px; color: var(--text2); font-weight: 500;
+  }
+
+  /* EMPTY STATE */
+  .empty {
+    text-align: center; padding: 60px 20px; color: var(--text2);
+    display: none;
+  }
+  .empty.visible { display: block; }
+  .empty-icon { font-size: 40px; margin-bottom: 12px; }
+
+  /* FOOTER */
+  .footer {
+    max-width: 1200px; margin: 40px auto 0; padding: 20px 32px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--text3);
+  }
+
+  @media (max-width: 768px) {
+    .main { padding: 16px; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .hero { flex-direction: column; }
+    .header-date { display: none; }
+  }
+</style>
 </head>
 <body>
-<h1>Veille Business Brisquard</h1>
-<p>Premier rapport disponible jeudi prochain.</p>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🎯</div>
+      <div>
+        <div class="logo-text">Veille Business</div>
+        <div class="logo-sub">Brisquard Executive Search</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-widget" id="weatherWidget"></div>
+      <div class="header-date" id="headerDate"></div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-title">Opérations financières France</div>
+      <div class="hero-sub">LBO · Levées de fonds · Acquisitions · Cessions</div>
+      <div class="hero-badge">📅 Semaine du <span id="heroDate"></span></div>
+    </div>
+    <div class="confidential">🔒 Document confidentiel — usage interne Brisquard</div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi total">
+      <div class="kpi-label">Opérations détectées</div>
+      <div class="kpi-value" id="kpiTotal">0</div>
+      <div class="kpi-desc">cette semaine</div>
+    </div>
+    <div class="kpi forte">
+      <div class="kpi-label">🔴 Priorité Forte</div>
+      <div class="kpi-value" id="kpiForte">0</div>
+      <div class="kpi-desc">à contacter rapidement</div>
+    </div>
+    <div class="kpi moyenne">
+      <div class="kpi-label">🟡 Priorité Moyenne</div>
+      <div class="kpi-value" id="kpiMoyenne">0</div>
+      <div class="kpi-desc">à surveiller</div>
+    </div>
+    <div class="kpi surveiller">
+      <div class="kpi-label">🟢 À surveiller</div>
+      <div class="kpi-value" id="kpiSurveiller">0</div>
+      <div class="kpi-desc">opportunités long terme</div>
+    </div>
+  </div>
+
+  <div class="filters-bar">
+    <span class="filter-label">Filtrer :</span>
+    <button class="chip active" data-p="all" onclick="filterDeals('all')">Toutes</button>
+    <button class="chip" data-p="FORTE" onclick="filterDeals('FORTE')">🔴 Forte</button>
+    <button class="chip" data-p="MOYENNE" onclick="filterDeals('MOYENNE')">🟡 Moyenne</button>
+    <button class="chip" data-p="A_SURVEILLER" onclick="filterDeals('A_SURVEILLER')">🟢 À surveiller</button>
+    <span class="result-count" id="resultCount"></span>
+  </div>
+
+  <div class="cards-grid" id="cardsGrid"></div>
+  <div class="empty" id="emptyState">
+    <div class="empty-icon">📭</div>
+    <div>Aucune opération dans cette catégorie</div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div>Généré le 15/04/2026 à 12:51 · claude-sonnet-4-6</div>
+  <div>Brisquard Executive Search · Confidentiel</div>
+</footer>
+
+<script>
+const DATA = {
+  date: "15 April 2026",
+  stats: { total: 2, forte: 1, moyenne: 0, surveiller: 1 },
+  weather: {"ok": true, "temp": "16", "feels": "16", "desc": "Sunny", "icon": "☀️", "humidity": "68"},
+  deals: [{"BOITE": "Flying Whales", "SECTEUR": "Aéronautique / Transport", "ACTIVITE": "Développement et fabrication de dirigeables cargo. La société développe un dirigeable de transport de marchandises Made in France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds", "MONTANT": "150 millions d'euros", "FONDS": "INCONNU", "DATE_DEAL": "Avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Flying Whales finalise une levée de fonds de 150M€ décrite comme «très bien avancée» et obtient le feu vert pour la construction de son usine. Cette double actualité (financement + lancement industriel) signale une phase de forte croissance et de structuration. Ce type de scale-up industriel génère typiquement des besoins en direction financière senior, direction générale opérationnelle et direction des ressources humaines pour accompagner la montée en puissance.", "PROFIL_CIBLE": "DAF transition / DG / DRH", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Start-ups IT françaises (secteur global)", "SECTEUR": "Technology / IT", "ACTIVITE": "Écosystème des start-ups IT françaises — article traitant de la tendance générale des levées de fonds en baisse, sans société spécifique identifiée.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds (tendance sectorielle)", "MONTANT": "INCONNU", "FONDS": "INCONNU", "DATE_DEAL": "Septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'article signale une contraction des levées de fonds dans l'IT française, ce qui peut générer des situations de tension financière dans des start-ups en portefeuille ou en recherche de refinancement. Ces contextes créent des besoins en DAF de transition ou en Board advisors pour sécuriser la gouvernance financière. À surveiller pour identifier des sociétés spécifiques en difficulté ou en restructuration.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}]
+};
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('heroDate').textContent = DATA.date;
+  document.getElementById('headerDate').textContent = 'Semaine du ' + DATA.date;
+  document.getElementById('kpiTotal').textContent = DATA.stats.total;
+  document.getElementById('kpiForte').textContent = DATA.stats.forte;
+  document.getElementById('kpiMoyenne').textContent = DATA.stats.moyenne;
+  document.getElementById('kpiSurveiller').textContent = DATA.stats.surveiller;
+
+  // Météo
+  const w = DATA.weather;
+  if (w.ok) {
+    document.getElementById('weatherWidget').innerHTML = `
+      <span class="weather-icon">${w.icon}</span>
+      <div class="weather-info">
+        <div class="weather-temp">${w.temp}°C</div>
+        <div class="weather-city">Toulouse</div>
+      </div>`;
+  }
+
+  renderCards(DATA.deals);
+});
+
+function prio(f) {
+  const p = (f.PRIORITE || '').toUpperCase();
+  if (p.includes('FORTE')) return 'FORTE';
+  if (p.includes('MOYENNE')) return 'MOYENNE';
+  if (p.includes('A_SURVEILLER') || p.includes('À_SURVEILLER')) return 'A_SURVEILLER';
+  return 'A_SURVEILLER';
+}
+
+function prioLabel(p) {
+  if (p === 'FORTE') return '🔴 Forte';
+  if (p === 'MOYENNE') return '🟡 Moyenne';
+  return '🟢 À surveiller';
+}
+
+function escHtml(str) {
+  return (str || 'INCONNU').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderCards(deals) {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = '';
+  deals.forEach((f, i) => {
+    const p = prio(f);
+    const activite = f.ACTIVITE !== 'INCONNU' ? f.ACTIVITE : '';
+    const opp = f.OPPORTUNITE !== 'INCONNU' && f.OPPORTUNITE !== 'NON_PERTINENT' ? f.OPPORTUNITE : '';
+
+    grid.innerHTML += `
+    <div class="card prio-${p}" data-prio="${p}">
+      <div class="card-top">
+        <div class="card-header">
+          <div class="card-name">${escHtml(f.BOITE)}</div>
+          <span class="prio-badge prio-${p}">${prioLabel(p)}</span>
+        </div>
+        <div class="card-sector">🏢 ${escHtml(f.SECTEUR)}</div>
+        ${activite ? `<div class="card-activite">${escHtml(activite)}</div>` : ''}
+      </div>
+
+      <div class="card-deal">
+        <div class="deal-row">
+          <span class="deal-label">Opération</span>
+          <span class="deal-value">${escHtml(f.OPERATION)}</span>
+        </div>
+        <div class="deal-row">
+          <span class="deal-label">Montant</span>
+          <span class="deal-value">${escHtml(f.MONTANT)}</span>
+        </div>
+        <div class="deal-row">
+          <span class="deal-label">Fonds</span>
+          <span class="deal-value">${escHtml(f.FONDS)}</span>
+        </div>
+        <div class="deal-row">
+          <span class="deal-label">Date</span>
+          <span class="deal-value">${escHtml(f.DATE_DEAL)}</span>
+        </div>
+      </div>
+
+      ${opp ? `
+      <div class="card-opp">
+        <div class="card-opp-title">💼 Opportunité Brisquard</div>
+        <div class="card-opp-text">${escHtml(opp)}</div>
+      </div>` : ''}
+
+      <div class="card-footer">
+        <span class="profil-badge">👤 ${escHtml(f.PROFIL_CIBLE)}</span>
+        <span class="timing-badge">⏱ ${escHtml(f.TIMING)}</span>
+      </div>
+    </div>`;
+  });
+  updateCount(deals.length);
+}
+
+let currentFilter = 'all';
+function filterDeals(p) {
+  currentFilter = p;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  document.querySelector(`[data-p="${p}"]`).classList.add('active');
+
+  const cards = document.querySelectorAll('.card');
+  let visible = 0;
+  cards.forEach(c => {
+    const match = p === 'all' || c.dataset.prio === p;
+    c.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+  updateCount(visible);
+  document.getElementById('emptyState').classList.toggle('visible', visible === 0);
+}
+
+function updateCount(n) {
+  document.getElementById('resultCount').textContent = n + ' opération' + (n > 1 ? 's' : '');
+}
+</script>
 </body>
 </html>
