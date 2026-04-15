@@ -5,31 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Veille Business — Brisquard · 15/04/2026</title>
 <link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800,900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #f5f4f1;
-    --surface: #ffffff;
-    --surface2: #f0ede8;
-    --border: #e2ddd6;
-    --text: #1a1916;
-    --text2: #6b6660;
-    --text3: #9b9590;
-    --accent: #1e3a5f;
-    --accent-light: #e8eef6;
-    --forte: #dc2626;
-    --forte-bg: #fef2f2;
-    --forte-border: #fecaca;
-    --moyenne: #d97706;
-    --moyenne-bg: #fffbeb;
-    --moyenne-border: #fde68a;
-    --surveiller: #059669;
-    --surveiller-bg: #ecfdf5;
-    --surveiller-border: #a7f3d0;
-    --radius: 12px;
-    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+    --bg:              #070f18;
+    --surface:         #0c1a28;
+    --surface2:        #102030;
+    --surface3:        #152638;
+    --border:          rgba(255,255,255,.07);
+    --border2:         rgba(255,255,255,.12);
+    --text:            #e4edf6;
+    --text2:           #7896b2;
+    --text3:           #415f78;
+    --cyan:            #00c8d9;
+    --cyan-dim:        rgba(0,200,217,.1);
+    --cyan-border:     rgba(0,200,217,.25);
+    --forte:           #ff4f5e;
+    --forte-bg:        rgba(255,79,94,.1);
+    --forte-border:    rgba(255,79,94,.28);
+    --moyenne:         #ffaa2c;
+    --moyenne-bg:      rgba(255,170,44,.1);
+    --moyenne-border:  rgba(255,170,44,.28);
+    --surveiller:      #20d47a;
+    --surveiller-bg:   rgba(32,212,122,.1);
+    --surveiller-border: rgba(32,212,122,.28);
+    --radius:          14px;
+    --shadow:          0 4px 32px rgba(0,0,0,.5);
   }
 
   body {
@@ -39,192 +42,223 @@
     min-height: 100vh;
   }
 
-  /* HEADER */
+  /* ── HEADER ── */
   .header {
-    background: var(--accent);
-    padding: 0 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
     position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    backdrop-filter: blur(12px);
   }
   .header-inner {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1280px; margin: 0 auto;
     display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
+    height: 68px;
   }
-  .logo { display: flex; align-items: center; gap: 12px; }
-  .logo-icon {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: rgba(255,255,255,.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
+  .logo { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--cyan); display: flex; align-items: center;
+    justify-content: center; font-size: 18px; font-weight: 900;
+    color: var(--bg); flex-shrink: 0;
   }
-  .logo-text { color: #fff; font-weight: 700; font-size: 16px; }
-  .logo-sub { color: rgba(255,255,255,.6); font-size: 12px; font-weight: 500; }
-  .header-right { display: flex; align-items: center; gap: 20px; }
-  .weather-widget {
+  .logo-text { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: .2px; }
+  .logo-sub { font-size: 11px; color: var(--text2); font-weight: 500; margin-top: 1px; }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .weather-pill {
     display: flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,.1); border-radius: 20px;
-    padding: 6px 14px;
+    background: var(--surface3); border: 1px solid var(--border2);
+    border-radius: 24px; padding: 6px 14px 6px 10px;
   }
-  .weather-icon { font-size: 18px; }
-  .weather-info { }
-  .weather-temp { color: #fff; font-size: 14px; font-weight: 700; }
-  .weather-city { color: rgba(255,255,255,.6); font-size: 11px; }
-  .header-date { color: rgba(255,255,255,.7); font-size: 13px; font-weight: 500; }
-
-  /* MAIN */
-  .main { max-width: 1200px; margin: 0 auto; padding: 32px; }
-
-  /* HERO */
-  .hero {
-    background: var(--surface); border-radius: var(--radius);
-    border: 1px solid var(--border); padding: 28px 32px;
-    margin-bottom: 24px; box-shadow: var(--shadow);
-    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  .w-icon { font-size: 17px; }
+  .w-temp { font-size: 14px; font-weight: 700; color: var(--text); }
+  .w-city { font-size: 11px; color: var(--text2); }
+  .header-date {
+    font-size: 12px; color: var(--text2); font-weight: 600;
+    background: var(--surface3); border: 1px solid var(--border);
+    border-radius: 20px; padding: 5px 14px;
   }
-  .hero-left { }
-  .hero-title { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-  .hero-sub { color: var(--text2); font-size: 14px; }
-  .hero-badge {
+
+  /* ── HERO BANNER ── */
+  .hero-banner {
+    background: linear-gradient(135deg, #0c2240 0%, #071525 60%, #070f18 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 52px 40px 48px;
+  }
+  .hero-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
+  }
+  .hero-tag {
     display: inline-flex; align-items: center; gap: 6px;
-    background: var(--accent-light); color: var(--accent);
-    border: 1px solid #c5d8ef; border-radius: 20px;
-    padding: 5px 14px; font-size: 12px; font-weight: 600; margin-top: 10px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 14px;
   }
-  .confidential {
-    display: flex; align-items: center; gap: 6px;
-    background: #fff8e6; border: 1px solid #fde68a; border-radius: 8px;
-    padding: 10px 16px; font-size: 12px; color: #92400e; font-weight: 600;
+  .hero-tag::before {
+    content: ''; display: block; width: 20px; height: 2px;
+    background: var(--cyan); border-radius: 2px;
+  }
+  .hero-title {
+    font-size: 38px; font-weight: 900; line-height: 1.1;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .hero-sub { font-size: 15px; color: var(--text2); font-weight: 500; }
+  .hero-right { flex-shrink: 0; text-align: right; }
+  .confidential-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,170,44,.08); border: 1px solid rgba(255,170,44,.2);
+    border-radius: 8px; padding: 8px 14px;
+    font-size: 12px; color: #ffaa2c; font-weight: 600;
   }
 
-  /* KPI ROW */
+  /* ── MAIN ── */
+  .main { max-width: 1280px; margin: 0 auto; padding: 36px 40px; }
+
+  /* ── KPI ROW ── */
   .kpi-row {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
   .kpi {
-    background: var(--surface); border-radius: var(--radius);
-    padding: 20px 24px; border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px 24px;
+    position: relative; overflow: hidden;
+    transition: border-color .2s;
   }
-  .kpi.forte { border-top: 3px solid var(--forte); }
-  .kpi.moyenne { border-top: 3px solid var(--moyenne); }
-  .kpi.surveiller { border-top: 3px solid var(--surveiller); }
-  .kpi.total { border-top: 3px solid var(--accent); }
-  .kpi-label { font-size: 12px; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
-  .kpi-value { font-size: 32px; font-weight: 800; margin: 6px 0 4px; }
-  .kpi.forte .kpi-value { color: var(--forte); }
-  .kpi.moyenne .kpi-value { color: var(--moyenne); }
+  .kpi::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .kpi.total::after   { background: var(--cyan); }
+  .kpi.forte::after   { background: var(--forte); }
+  .kpi.moyenne::after { background: var(--moyenne); }
+  .kpi.surveiller::after { background: var(--surveiller); }
+  .kpi:hover { border-color: var(--border2); }
+  .kpi-label { font-size: 11px; color: var(--text2); font-weight: 700;
+                text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px; }
+  .kpi-value { font-size: 44px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+  .kpi.total .kpi-value    { color: var(--cyan); }
+  .kpi.forte .kpi-value    { color: var(--forte); }
+  .kpi.moyenne .kpi-value  { color: var(--moyenne); }
   .kpi.surveiller .kpi-value { color: var(--surveiller); }
-  .kpi.total .kpi-value { color: var(--accent); }
   .kpi-desc { font-size: 12px; color: var(--text3); }
 
-  /* FILTERS */
+  /* ── FILTERS ── */
   .filters-bar {
-    background: var(--surface); border-radius: var(--radius);
-    border: 1px solid var(--border); padding: 14px 20px;
-    margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-    box-shadow: var(--shadow);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 28px;
   }
-  .filter-label { font-size: 13px; font-weight: 600; color: var(--text2); white-space: nowrap; }
+  .filter-label { font-size: 12px; font-weight: 700; color: var(--text3);
+                   text-transform: uppercase; letter-spacing: .6px; margin-right: 4px; }
   .chip {
-    padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
-    cursor: pointer; border: 1.5px solid var(--border); background: transparent;
+    padding: 7px 18px; border-radius: 24px; font-size: 13px; font-weight: 600;
+    cursor: pointer; border: 1.5px solid var(--border2); background: transparent;
     color: var(--text2); transition: all .15s; font-family: inherit;
   }
-  .chip:hover { border-color: var(--accent); color: var(--accent); }
-  .chip.active { border-color: transparent; color: #fff; }
-  .chip[data-p="all"].active { background: var(--accent); }
-  .chip[data-p="FORTE"].active { background: var(--forte); }
+  .chip:hover { border-color: var(--cyan); color: var(--cyan); }
+  .chip.active { color: var(--bg); border-color: transparent; }
+  .chip[data-p="all"].active    { background: var(--cyan); }
+  .chip[data-p="FORTE"].active  { background: var(--forte); }
   .chip[data-p="MOYENNE"].active { background: var(--moyenne); }
   .chip[data-p="A_SURVEILLER"].active { background: var(--surveiller); }
-  .result-count { margin-left: auto; font-size: 13px; color: var(--text2); }
+  .result-count { margin-left: auto; font-size: 12px; color: var(--text3); font-weight: 600; }
 
-  /* CARDS */
+  /* ── CARDS ── */
   .cards-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px;
   }
   .card {
-    background: var(--surface); border-radius: var(--radius);
-    border: 1px solid var(--border); overflow: hidden;
-    box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    display: flex; flex-direction: column;
   }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+  .card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.5);
+  }
   .card.hidden { display: none; }
 
-  .card-top {
-    padding: 18px 20px 14px;
-    border-left: 4px solid var(--border);
-  }
-  .card.prio-FORTE .card-top { border-left-color: var(--forte); }
-  .card.prio-MOYENNE .card-top { border-left-color: var(--moyenne); }
-  .card.prio-A_SURVEILLER .card-top { border-left-color: var(--surveiller); }
+  .card-stripe { height: 4px; }
+  .card.prio-FORTE .card-stripe       { background: var(--forte); }
+  .card.prio-MOYENNE .card-stripe     { background: var(--moyenne); }
+  .card.prio-A_SURVEILLER .card-stripe { background: var(--surveiller); }
 
-  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-  .card-name { font-size: 17px; font-weight: 800; }
-  .prio-badge {
-    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
-    white-space: nowrap;
+  .card-top { padding: 20px 22px 16px; flex: 1; }
+  .card-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 10px; margin-bottom: 6px;
   }
-  .prio-FORTE { background: var(--forte-bg); color: var(--forte); border: 1px solid var(--forte-border); }
-  .prio-MOYENNE { background: var(--moyenne-bg); color: var(--moyenne); border: 1px solid var(--moyenne-border); }
+  .card-name { font-size: 17px; font-weight: 800; line-height: 1.2; }
+  .prio-badge {
+    font-size: 10px; font-weight: 800; padding: 4px 11px;
+    border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+  .prio-FORTE    { background: var(--forte-bg);    color: var(--forte);    border: 1px solid var(--forte-border); }
+  .prio-MOYENNE  { background: var(--moyenne-bg);  color: var(--moyenne);  border: 1px solid var(--moyenne-border); }
   .prio-A_SURVEILLER { background: var(--surveiller-bg); color: var(--surveiller); border: 1px solid var(--surveiller-border); }
 
-  .card-sector { font-size: 12px; color: var(--text2); margin-bottom: 10px; font-weight: 500; }
-  .card-activite { font-size: 13px; color: var(--text2); line-height: 1.5; margin-bottom: 12px; }
+  .card-sector { font-size: 11px; color: var(--text3); font-weight: 600;
+                  text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .card-activite { font-size: 13px; color: var(--text2); line-height: 1.55; }
 
   .card-deal {
-    background: var(--surface2); border-radius: 8px; padding: 12px 14px;
-    margin: 0 20px 14px;
+    margin: 14px 22px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;
   }
-  .deal-row { display: flex; gap: 8px; font-size: 13px; margin-bottom: 4px; }
+  .deal-row { display: flex; gap: 10px; font-size: 13px; margin-bottom: 6px; }
   .deal-row:last-child { margin-bottom: 0; }
-  .deal-label { color: var(--text2); font-weight: 500; min-width: 70px; flex-shrink: 0; }
+  .deal-label { color: var(--text3); font-weight: 600; min-width: 74px; flex-shrink: 0; font-size: 12px; }
   .deal-value { color: var(--text); font-weight: 600; }
 
   .card-opp {
-    padding: 0 20px 14px;
+    margin: 0 22px 16px;
+    background: var(--cyan-dim); border: 1px solid var(--cyan-border);
+    border-radius: 10px; padding: 12px 14px;
   }
   .card-opp-title {
-    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
-    color: var(--accent); margin-bottom: 6px;
+    font-size: 10px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .8px; color: var(--cyan); margin-bottom: 6px;
   }
-  .card-opp-text { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .card-opp-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
 
   .card-footer {
-    padding: 12px 20px; border-top: 1px solid var(--border);
+    padding: 12px 22px; border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
     background: var(--surface2);
   }
   .timing-badge {
-    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 8px;
-    background: var(--accent-light); color: var(--accent);
+    font-size: 11px; font-weight: 700; padding: 4px 11px; border-radius: 8px;
+    background: var(--surface3); color: var(--text2); border: 1px solid var(--border2);
   }
-  .profil-badge {
-    font-size: 11px; color: var(--text2); font-weight: 500;
-  }
+  .profil-badge { font-size: 11px; color: var(--text3); font-weight: 600; }
 
-  /* EMPTY STATE */
+  /* ── EMPTY ── */
   .empty {
-    text-align: center; padding: 60px 20px; color: var(--text2);
-    display: none;
+    text-align: center; padding: 80px 20px; color: var(--text3); display: none;
   }
   .empty.visible { display: block; }
-  .empty-icon { font-size: 40px; margin-bottom: 12px; }
+  .empty-icon { font-size: 40px; margin-bottom: 14px; opacity: .5; }
 
-  /* FOOTER */
-  .footer {
-    max-width: 1200px; margin: 40px auto 0; padding: 20px 32px;
+  /* ── FOOTER ── */
+  .page-footer {
+    max-width: 1280px; margin: 48px auto 0; padding: 20px 40px 40px;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; color: var(--text3);
+    font-size: 11px; color: var(--text3);
   }
 
-  @media (max-width: 768px) {
-    .main { padding: 16px; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-banner { padding: 36px 20px; }
+    .hero-title { font-size: 28px; }
+    .hero-right { display: none; }
+    .main { padding: 24px 20px; }
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
-    .hero { flex-direction: column; }
+    .header { padding: 0 20px; }
     .header-date { display: none; }
   }
 </style>
@@ -234,100 +268,102 @@
 <header class="header">
   <div class="header-inner">
     <div class="logo">
-      <div class="logo-icon">🎯</div>
+      <div class="logo-mark">B</div>
       <div>
-        <div class="logo-text">Veille Business</div>
-        <div class="logo-sub">Brisquard Executive Search</div>
+        <div class="logo-text">BRISQUARD</div>
+        <div class="logo-sub">Executive Search · Veille Business</div>
       </div>
     </div>
     <div class="header-right">
-      <div class="weather-widget" id="weatherWidget"></div>
+      <div class="weather-pill" id="weatherWidget"></div>
       <div class="header-date" id="headerDate"></div>
     </div>
   </div>
 </header>
 
-<main class="main">
-
-  <div class="hero">
+<div class="hero-banner">
+  <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-title">Opérations financières France</div>
-      <div class="hero-sub">LBO · Levées de fonds · Acquisitions · Cessions</div>
-      <div class="hero-badge">📅 Semaine du <span id="heroDate"></span></div>
+      <div class="hero-tag">Rapport hebdomadaire</div>
+      <div class="hero-title">Opérations<br>financières France</div>
+      <div class="hero-sub">LBO · Levées de fonds · Acquisitions · Cessions — <span id="heroDate"></span></div>
     </div>
-    <div class="confidential">🔒 Document confidentiel — usage interne Brisquard</div>
+    <div class="hero-right">
+      <div class="confidential-badge">🔒 Document confidentiel</div>
+    </div>
   </div>
+</div>
+
+<main class="main">
 
   <div class="kpi-row">
     <div class="kpi total">
       <div class="kpi-label">Opérations détectées</div>
-      <div class="kpi-value" id="kpiTotal">0</div>
+      <div class="kpi-value" id="kpiTotal">—</div>
       <div class="kpi-desc">cette semaine</div>
     </div>
     <div class="kpi forte">
-      <div class="kpi-label">🔴 Priorité Forte</div>
-      <div class="kpi-value" id="kpiForte">0</div>
+      <div class="kpi-label">Priorité forte</div>
+      <div class="kpi-value" id="kpiForte">—</div>
       <div class="kpi-desc">à contacter rapidement</div>
     </div>
     <div class="kpi moyenne">
-      <div class="kpi-label">🟡 Priorité Moyenne</div>
-      <div class="kpi-value" id="kpiMoyenne">0</div>
+      <div class="kpi-label">Priorité moyenne</div>
+      <div class="kpi-value" id="kpiMoyenne">—</div>
       <div class="kpi-desc">à surveiller</div>
     </div>
     <div class="kpi surveiller">
-      <div class="kpi-label">🟢 À surveiller</div>
-      <div class="kpi-value" id="kpiSurveiller">0</div>
+      <div class="kpi-label">À surveiller</div>
+      <div class="kpi-value" id="kpiSurveiller">—</div>
       <div class="kpi-desc">opportunités long terme</div>
     </div>
   </div>
 
   <div class="filters-bar">
-    <span class="filter-label">Filtrer :</span>
-    <button class="chip active" data-p="all" onclick="filterDeals('all')">Toutes</button>
-    <button class="chip" data-p="FORTE" onclick="filterDeals('FORTE')">🔴 Forte</button>
-    <button class="chip" data-p="MOYENNE" onclick="filterDeals('MOYENNE')">🟡 Moyenne</button>
-    <button class="chip" data-p="A_SURVEILLER" onclick="filterDeals('A_SURVEILLER')">🟢 À surveiller</button>
+    <span class="filter-label">Filtrer</span>
+    <button class="chip active" data-p="all"          onclick="filterDeals('all')">Toutes</button>
+    <button class="chip" data-p="FORTE"               onclick="filterDeals('FORTE')">Forte</button>
+    <button class="chip" data-p="MOYENNE"             onclick="filterDeals('MOYENNE')">Moyenne</button>
+    <button class="chip" data-p="A_SURVEILLER"        onclick="filterDeals('A_SURVEILLER')">À surveiller</button>
     <span class="result-count" id="resultCount"></span>
   </div>
 
   <div class="cards-grid" id="cardsGrid"></div>
   <div class="empty" id="emptyState">
-    <div class="empty-icon">📭</div>
+    <div class="empty-icon">○</div>
     <div>Aucune opération dans cette catégorie</div>
   </div>
 
 </main>
 
-<footer class="footer">
-  <div>Généré le 15/04/2026 à 12:56 · claude-sonnet-4-6</div>
+<footer class="page-footer">
+  <div>Généré le 15/04/2026 à 13:39 · claude-sonnet-4-6</div>
   <div>Brisquard Executive Search · Confidentiel</div>
 </footer>
 
 <script>
 const DATA = {
   date: "15/04/2026",
-  stats: { total: 23, forte: 9, moyenne: 8, surveiller: 6 },
-  weather: {"ok": true, "temp": "16", "feels": "16", "desc": "Sunny", "icon": "☀️", "humidity": "68"},
-  deals: [{"BOITE": "Flying Whales", "SECTEUR": "Aéronautique / Transport aérien / Mobilité", "ACTIVITE": "Flying Whales développe des dirigeables cargo de nouvelle génération, conçus pour le transport de charges lourdes, avec un projet de production Made in France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds", "MONTANT": "150 millions d'euros", "FONDS": "INCONNU", "DATE_DEAL": "Avril 2026 (annonce)", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "La levée de fonds de 150 M€ décrite comme \"très bien avancée\" et le feu vert pour la construction d'une usine signalent une phase de scaling industriel majeure. Ce double déclencheur (financement + industrialisation) génère typiquement des besoins en direction financière (pilotage capex, structuration dette, reporting investisseurs), direction générale opérationnelle et DRH pour accompagner la montée en puissance des effectifs sur site de production.", "PROFIL_CIBLE": "DAF transition / DG / DRH", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Ami Labs", "SECTEUR": "Intelligence Artificielle / Tech", "ACTIVITE": "Start-up dans le domaine de l'IA, fondée par Yann Le Cun. Détails précis de l'activité non mentionnés dans l'extrait.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds", "MONTANT": "INCONNU", "FONDS": "INCONNU", "DATE_DEAL": "Mars 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "La levée de fonds d'Ami Labs, portée par Yann Le Cun (figure mondiale de l'IA), signale une phase de structuration et de croissance rapide. Ce type de start-up IA en early/growth stage génère des besoins en leadership exécutif (DAF, DG, DRH) pour professionnaliser les opérations post-levée. Brisquard peut positionner des profils capables d'accompagner une scale-up tech à forte visibilité internationale.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Capital-investissement", "ACTIVITE": "LBO France est un fonds de capital-investissement spécialisé dans les opérations de LBO (Leveraged Buy-Out) accompagnant des entreprises dans leur développement et transformation.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Restructuration interne / Départ d'associés", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "11 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Le départ de deux associés historiques crée une situation de restructuration au sein de LBO France, avec un besoin probable de recomposition de l'équipe dirigeante et du board. Dans ce contexte de rebond, le fonds pourrait chercher à renforcer ses capacités opérationnelles et de gouvernance. Opportunité potentielle pour Brisquard sur du Board Advisory ou des profils de direction pour accompagner la transition stratégique du fonds et de ses participations.", "PROFIL_CIBLE": "Board advisor / DG", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "LBO France est une société de gestion spécialisée dans le capital-investissement (LBO). INCONNU au-delà de cette description dans l'article.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "INCONNU (contexte de difficultés internes, départs de dirigeants)", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "15 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Deux départs confirmés au sein de LBO France dans un contexte de difficultés. Une société de gestion en tension est typiquement amenée à recomposer ses équipes dirigeantes (direction générale, fonctions support stratégiques). Opportunité potentielle pour Brisquard de positionner des profils de direction générale ou de Board Advisory dans un contexte de restructuration ou de transformation. À surveiller de près pour identifier les besoins précis.", "PROFIL_CIBLE": "DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Dutscher", "SECTEUR": "Sciences de la vie / Fournitures laboratoire", "ACTIVITE": "INCONNU (distributeur/fournisseur dans le secteur des sciences de la vie, d'après le contexte sectoriel implicite)", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Cession", "MONTANT": "~250 M€", "FONDS": "Acquéreur : Vivo Capital / Cédant : LBO France", "DATE_DEAL": "03 février 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "La cession de Dutscher par LBO France à Vivo Capital pour ~250 M€ constitue un changement d'actionnaire majeur. Un nouvel investisseur (Vivo Capital, fonds américain spécialisé healthcare) va vraisemblablement vouloir structurer ou renforcer le management. Des besoins en DAF, DG ou profils Board pour accompagner la nouvelle phase de développement sont probables dans les mois suivant le closing.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Serapid", "SECTEUR": "INCONNU", "ACTIVITE": "INCONNU", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "LBO (second LBO / LBO bis)", "MONTANT": "INCONNU", "FONDS": "Quatre fonds (noms non mentionnés dans l'extrait)", "DATE_DEAL": "07 octobre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Un LBO bis implique généralement une recomposition de l'équipe dirigeante et des fonctions clés (DAF, DRH, DG). La présence de quatre fonds au capital suggère une gouvernance renforcée et des besoins potentiels en Board Advisory. Brisquard peut se positionner sur l'accompagnement des nouveaux actionnaires pour structurer le management de la société.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Hemodia", "SECTEUR": "Santé / Dispositifs médicaux", "ACTIVITE": "Fabrication de sets de soin (dispositifs médicaux à usage unique). Détails supplémentaires non mentionnés dans l'article.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "LBO", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "20 mai 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Entrée de LBO France au capital d'Hemodia dans le cadre d'un LBO. Ce type d'opération génère typiquement des besoins en gouvernance et management : recrutement d'un DAF structurant, potentiellement d'un DG opérationnel ou d'un Board advisor pour accompagner la création de valeur. Brisquard peut se positionner rapidement auprès du fonds et/ou du management.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Globalstar", "SECTEUR": "Télécommunications satellitaires", "ACTIVITE": "Opérateur de télécommunications par satellite. Globalstar est acquis par Amazon pour intégrer une couverture satellitaire à son infrastructure existante.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU", "FONDS": "Amazon", "DATE_DEAL": "15 avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'acquisition de Globalstar par Amazon, combinée à un partenariat stratégique avec Apple, représente une intégration majeure d'infrastructure pour le groupe. Une opération de cette envergure génère typiquement des besoins en leadership exécutif : DAF pour piloter l'intégration financière, DG/Country Manager pour structurer les nouvelles entités, et Board Advisory pour gouvernance de la structure combinée. Le volet RH d'une fusion trans-sectorielle (tech + télécoms) est également significatif.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor / DRH", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "WeMaintain", "SECTEUR": "PropTech / Maintenance d'ascenseurs", "ACTIVITE": "WeMaintain opère dans la maintenance d'ascenseurs, vraisemblablement via une plateforme digitale. La société a connu une croissance rapide mais aussi des pertes persistantes.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU (montant total levé depuis création : 38,8 millions d'euros)", "FONDS": "Otis (acquéreur) / Investisseurs historiques : IDINVEST (EURAZEO), BPI France, Red River West, Financière Saint James, The Family", "DATE_DEAL": "13 avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'intégration de WeMaintain dans le groupe Otis génère classiquement des besoins de restructuration managériale post-acquisition : alignement des équipes dirigeantes, harmonisation RH et financière. La mention de pertes persistantes suggère un besoin potentiel de profils de transformation (DAF, DG) capables de piloter une phase d'optimisation. Otis, groupe américain coté, peut également chercher à structurer une gouvernance locale renforcée en France.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "LBO France est une société de gestion spécialisée en capital-investissement. Elle lance un premier fonds evergreen référencé chez Generali France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Référencement fonds evergreen / Distribution", "MONTANT": "INCONNU", "FONDS": "LBO France (fonds evergreen) / Generali France (distributeur)", "DATE_DEAL": "12 novembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Le référencement d'un premier fonds evergreen chez Generali France marque une étape structurante pour LBO France dans sa stratégie de démocratisation du private equity. Ce type de développement (nouveau véhicule, nouveau canal de distribution) génère souvent des besoins en profils de direction pour piloter la croissance commerciale, la conformité et la structuration opérationnelle. Brisquard peut se positionner sur des mandats liés à l'expansion de la plateforme.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "LBO France est une société de capital-investissement spécialisée dans les opérations de LBO sur des entreprises françaises.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Départ / Séparation d'associés", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "12 septembre 2025", "CONTACT_FONDS": "INCONNU (deux associés historiques non nommés dans l'extrait)", "OPPORTUNITE": "Le départ de deux associés historiques de LBO France crée potentiellement des besoins de gouvernance et de restructuration au sein de l'équipe dirigeante. Des postes de Board Advisory ou de profils seniors pourraient être à pourvoir pour accompagner la transition stratégique. Ce type de mouvement génère souvent des réorganisations en cascade dans les équipes de direction des participations du fonds.", "PROFIL_CIBLE": "Board advisor / DG", "TIMING": "Court terme 0-3 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "Société de capital-investissement gérant des fonds de private equity, dont la gamme White Caps Selection et un nouveau fonds evergreen destinés à des investisseurs patrimoniaux.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds (4e millésime White Caps Selection + lancement fonds evergreen)", "MONTANT": "INCONNU", "FONDS": "White Caps Selection (4e millésime) / Nouveau fonds evergreen", "DATE_DEAL": "30 septembre 2025", "CONTACT_FONDS": "Dalila Houd et Johan Didouche (titres non précisés)", "OPPORTUNITE": "LBO France lance simultanément un 4e millésime de sa gamme White Caps Selection et un nouveau fonds evergreen, signalant une phase de développement commercial et structurel. Ces lancements impliquent généralement des besoins en profils de direction (investor relations, gestion, compliance) et potentiellement des postes au niveau du board ou de la direction générale pour piloter ces nouvelles structures.", "PROFIL_CIBLE": "Board advisor / DG", "TIMING": "Court terme 0-3 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "Hôtel Konti (Bordeaux)", "SECTEUR": "Hôtellerie", "ACTIVITE": "Hôtel situé à Bordeaux, acquis par LBO France dans le cadre de sa stratégie d'investissement dans le secteur hôtelier.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "24 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France poursuit une stratégie active d'investissement dans l'hôtellerie, signalant un besoin potentiel de profils de direction opérationnelle et financière pour accompagner la croissance du portefeuille. L'acquisition d'un actif à Bordeaux suggère une expansion géographique qui peut nécessiter des recrutements de direction locale ou centrale. Brisquard peut se positionner sur des mandats DAF ou DG pour la gestion du portefeuille hôtelier.", "PROFIL_CIBLE": "DAF transition / DG", "TIMING": "Court terme 0-3 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "Argos", "SECTEUR": "Private Equity", "ACTIVITE": "INCONNU", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Recrutement / Mobilité cadre dirigeant", "MONTANT": "INCONNU", "FONDS": "Argos", "DATE_DEAL": "19 janvier 2026", "CONTACT_FONDS": "Sophie Chateau (arrivante — anciennement LBO France)", "OPPORTUNITE": "Le départ de Sophie Chateau de LBO France crée potentiellement un poste vacant au sein de l'équipe dirigeante ou d'investissement de LBO France. Par ailleurs, l'arrivée chez Argos peut générer des besoins en recrutement de profils C-suite dans leur portefeuille. Brisquard peut se positionner auprès des deux structures pour des missions DAF, DG ou Board Advisory.", "PROFIL_CIBLE": "Board advisor / DG / DAF transition", "TIMING": "Court terme 0-3 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity", "ACTIVITE": "Fonds de private equity spécialisé dans les opérations de LBO, avec une stratégie midmarket. Cherche à relancer son activité midmarket en élargissant son empreinte géographique dans les deux prochaines années.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Relance stratégique / Développement géographique", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "15 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France relance sa stratégie midmarket avec une expansion géographique sur un horizon de deux ans. Ce repositionnement stratégique implique probablement des recrutements au niveau direction pour accompagner la croissance et l'ouverture de nouveaux marchés. Brisquard peut se positionner sur des besoins en DAF, DG ou Board Advisory pour les sociétés du portefeuille ainsi que pour LBO France lui-même dans cette phase de transformation.", "PROFIL_CIBLE": "DG / DAF transition / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "MWM", "SECTEUR": "Applications mobiles / Digital", "ACTIVITE": "Groupe spécialisé dans le développement et l'acquisition d'applications mobiles, avec une stratégie de build-up visant à intégrer des actifs validés par le marché.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU", "FONDS": "MWM (acquéreur)", "DATE_DEAL": "09 avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "MWM engage une stratégie de build-up inspirée de Bending Spoons, ce qui implique une montée en complexité opérationnelle et managériale. L'intégration de nouvelles entités crée des besoins en profils capables de structurer la gouvernance, piloter l'intégration financière et accompagner la croissance externe. Brisquard peut se positionner sur des mandats DAF groupe, DG de filiale ou Board Advisory pour accompagner cette transformation.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "Doctolib", "SECTEUR": "Santé numérique / HealthTech", "ACTIVITE": "Plateforme de prise de rendez-vous médicaux en ligne et de gestion de cabinets médicaux, opérant principalement en Europe.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Cession de titres sur marché secondaire", "MONTANT": "Valorisation implicite de 3,6 milliards d'euros", "FONDS": "INCONNU", "DATE_DEAL": "Quelques mois après l'annonce de la rentabilité (date précise non mentionnée) / information Bloomberg publiée avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Doctolib atteint la rentabilité et voit sa valorisation se comprimer à 3,6 Md€ contre 5,8 Md€ en 2022. Cette phase de maturité post-hypercroissance, combinée à une recherche de solidité opérationnelle, génère souvent des besoins de structuration managériale (gouvernance, finance, RH). Une entreprise rentabilisée qui reconfigure son capital peut chercher à renforcer son comité de direction ou son Board avec des profils expérimentés en scale-up mature.", "PROFIL_CIBLE": "DAF transition / Board advisor / DG", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "Start-ups IT françaises (secteur agrégé)", "SECTEUR": "Tech / IT / Start-up", "ACTIVITE": "Article traitant de la tendance générale de baisse des levées de fonds dans l'écosystème des start-ups IT françaises — aucune entreprise spécifique identifiée.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds (tendance sectorielle)", "MONTANT": "INCONNU", "FONDS": "INCONNU", "DATE_DEAL": "11 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "NON_PERTINENT", "PROFIL_CIBLE": "NON_PERTINENT", "TIMING": "NON_PERTINENT", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Capital-investissement", "ACTIVITE": "Fonds de private equity français intervenant notamment sur le segment Mid cap (entreprises de taille intermédiaire).", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Temporisation / Pause stratégique sur le Mid cap", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "16 janvier 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France marque une pause sur le segment Mid cap, ce qui peut signaler une période de repositionnement stratégique ou de transition dans leur portefeuille. Les sociétés en portefeuille pourraient avoir besoin de renforcements managériaux (DAF, DG) pendant cette phase d'attentisme. Une opportunité de conseil en Board Advisory ou en executive search pour accompagner les participations existantes dans une période d'incertitude.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "LBO France est une société de gestion spécialisée dans le capital-investissement. Elle présente ici le 4ᵉ millésime de son fonds White Caps Selection.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds (présentation d'un nouveau millésime)", "MONTANT": "INCONNU", "FONDS": "LBO France (White Caps Selection – 4ᵉ millésime)", "DATE_DEAL": "18 septembre 2025", "CONTACT_FONDS": "Johan Didouche – INCONNU (titre non précisé) / Dalila Houd – INCONNU (titre non précisé)", "OPPORTUNITE": "L'article annonce uniquement la présentation d'un nouveau millésime de fonds, sans opération de portefeuille identifiée. Aucune société cible n'est mentionnée, donc peu d'opportunité directe de placement pour Brisquard à ce stade. À surveiller si LBO France annonce des investissements dans des sociétés en portefeuille nécessitant des dirigeants.", "PROFIL_CIBLE": "NON_PERTINENT", "TIMING": "NON_PERTINENT", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France / Generali", "SECTEUR": "Private Equity / Assurance", "ACTIVITE": "LBO France est un fonds de private equity ; Generali est un groupe d'assurance. Un deal est annoncé entre les deux entités, sans précision sur la nature exacte de l'opération.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Deal (nature exacte non précisée)", "MONTANT": "INCONNU", "FONDS": "LBO France / Generali", "DATE_DEAL": "22 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Le deal entre LBO France et Generali pourrait générer des besoins en direction générale, direction financière ou gouvernance au niveau de la structure cible ou du véhicule créé. Toutefois, le manque de détails sur la nature de l'opération (cible, structure, montant) limite l'analyse. À surveiller pour identifier la société cible éventuelle et les besoins RH associés.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity", "ACTIVITE": "Société de gestion spécialisée dans le Private Equity Small et Mid Cap, axée sur la création de valeur dans les entreprises en portefeuille.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "LBO / Private Equity (activité générique, pas d'opération spécifique annoncée)", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "INCONNU", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'article évoque l'activité de LBO France sur le segment Small & Mid Cap, un terrain fertile pour Brisquard. Les sociétés en portefeuille de fonds Small/Mid Cap ont régulièrement besoin de renforcer leurs équipes dirigeantes (DAF, DG, DRH) post-acquisition pour accompagner la création de valeur. LBO France peut être un prescripteur clé pour des missions de transformation managériale ou de board advisory.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France, Peqan, Archinvest, UI Investissement", "SECTEUR": "Private Equity", "ACTIVITE": "Sociétés de gestion spécialisées en capital-investissement, intervenant sur des opérations de LBO et investissements dans des entreprises non cotées. Discussion sur les secteurs à privilégier en private equity.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "INCONNU", "MONTANT": "INCONNU", "FONDS": "LBO France / Peqan / Archinvest / UI Investissement", "DATE_DEAL": "18 juin 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Article de nature éditoriale/pédagogique sans opération concrète identifiée. Permet néanmoins de suivre les acteurs du PE français actifs sur le marché. LBO France et UI Investissement sont des fonds récurrents dans les opérations mid-market françaises générant des besoins en direction générale et financière dans leurs participations.", "PROFIL_CIBLE": "NON_PERTINENT", "TIMING": "NON_PERTINENT", "PRIORITE": "A_SURVEILLER"}]
+  stats: { total: 24, forte: 10, moyenne: 4, surveiller: 10 },
+  weather: {"ok": true, "temp": "16", "feels": "16", "desc": "Ensoleillé", "icon": "☀️", "humidity": "68"},
+  deals: [{"BOITE": "Flying Whales", "SECTEUR": "Aéronautique / Mobilité aérienne", "ACTIVITE": "Développement et fabrication de dirigeables cargo. La société prépare la construction d'une usine de production en France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds", "MONTANT": "150 millions d'euros", "FONDS": "INCONNU", "DATE_DEAL": "Avril 2026 (article du 13 avril 2026)", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Flying Whales boucle une levée de fonds de 150M€ décrite comme \"très bien avancée\" et obtient le feu vert pour la construction de son usine française. Cette double actualité (industrialisation + financement majeur) génère typiquement des besoins en direction générale opérationnelle, direction financière et structuration RH pour accompagner le passage à l'échelle industrielle. Profil de scale-up deep tech à forte composante industrielle, pertinent pour Brisquard sur les profils C-suite.", "PROFIL_CIBLE": "DAF transition / DG / DRH", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "AMI", "SECTEUR": "Intelligence Artificielle / Tech", "ACTIVITE": "Startup française spécialisée dans l'IA. Détails précis sur l'activité non mentionnés dans l'article.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds", "MONTANT": "1 milliard de dollars", "FONDS": "INCONNU", "DATE_DEAL": "10 mars 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Une levée d'un milliard de dollars pour une startup française IA représente une opération de très grande envergure. Ce type de financement s'accompagne généralement de recrutements stratégiques au niveau C-suite (DAF, DRH, DG) pour structurer la croissance rapide. Brisquard devrait proactivement approcher AMI pour accompagner la professionnalisation de la gouvernance et du management.", "PROFIL_CIBLE": "DAF transition / DG / DRH / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Capital-investissement", "ACTIVITE": "Société de gestion spécialisée dans les opérations de LBO (leveraged buyout) en France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Séparation d'associés / Restructuration interne", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "12 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Le départ de deux associés historiques chez LBO France crée potentiellement des besoins en recomposition d'équipe dirigeante et de gouvernance. Un cabinet comme Brisquard peut être sollicité pour identifier des profils de Board Advisory ou des Managing Directors pour renforcer l'équipe de gestion. Ce type de transition interne dans un fonds de PE génère souvent des besoins rapides en positionnement stratégique et en recrutement senior.", "PROFIL_CIBLE": "Board advisor / DG", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Capital-investissement", "ACTIVITE": "LBO France est un fonds de capital-investissement spécialisé dans les opérations de LBO (Leveraged Buyout) en France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Départ d'associés historiques / Restructuration interne", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "11 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Le départ de deux associés historiques chez LBO France signale une phase de transition managériale significative au sein du fonds. Ce type de restructuration au niveau du partnership génère souvent des besoins en profils de direction pour renforcer l'équipe dirigeante ou accompagner les sociétés du portefeuille. Brisquard peut se positionner sur des mandats Board Advisory ou DG/DAF pour les participations en portefeuille fragilisées par ce contexte.", "PROFIL_CIBLE": "Board advisor / DG / DAF transition", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "LBO France est une société de capital-investissement spécialisée dans les opérations de LBO sur des entreprises françaises.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "INCONNU (contexte de difficultés internes, départs de dirigeants)", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "15 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France traverse une période de difficultés avec deux départs confirmés, ce qui signale une instabilité managériale au sein de la structure. Ce type de situation génère typiquement des besoins de renforcement des équipes dirigeantes, de governance ou d'accompagnement au changement. Pour Brisquard, il s'agit d'une opportunité de positionnement sur des missions Board Advisory ou de placement de profils senior pour stabiliser la structure. À surveiller de près pour identifier les postes ouverts ou les besoins non exprimés.", "PROFIL_CIBLE": "Board advisor / DG", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Dutscher", "SECTEUR": "Sciences de la vie / Fournitures de laboratoire", "ACTIVITE": "INCONNU (détails non mentionnés dans l'article)", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Cession", "MONTANT": "Près de 250 M€", "FONDS": "Acquéreur : Vivo Capital / Cédant : LBO France", "DATE_DEAL": "03 février 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "La cession de Dutscher à Vivo Capital pour ~250 M€ marque un changement d'actionnaire significatif. Un nouveau fonds au capital implique généralement une revue des équipes dirigeantes et une redéfinition des ambitions stratégiques. Vivo Capital, acteur spécialisé healthcare/life sciences, pourrait accélérer le développement de Dutscher et générer des besoins en profils C-suite expérimentés dans le secteur.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Serapid", "SECTEUR": "INCONNU", "ACTIVITE": "INCONNU", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "LBO (second — LBO bis)", "MONTANT": "INCONNU", "FONDS": "Quatre fonds (noms non mentionnés)", "DATE_DEAL": "07 octobre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Un LBO bis implique généralement une recomposition du management et des besoins en gouvernance renforcée. Avec quatre fonds impliqués, la structuration financière et le reporting seront complexes, créant un besoin potentiel de DAF expérimenté en environnement LBO et/ou d'un Board advisor. Brisquard peut se positionner rapidement sur ces besoins post-closing.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Hemodia", "SECTEUR": "Santé / Dispositifs médicaux", "ACTIVITE": "Fabrication de sets de soin (dispositifs médicaux à usage unique). Détails complémentaires non mentionnés dans l'article.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "LBO", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "20 mai 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Entrée de LBO France au capital d'Hemodia via un LBO génère classiquement des besoins en profils de direction pour structurer la gouvernance et accompagner la croissance. Un fonds comme LBO France cherche à professionnaliser rapidement ses participations, notamment sur les fonctions financières et RH. Opportunité à adresser rapidement auprès de LBO France pour proposer des profils DAF, DG ou Board advisor adaptés au secteur santé/medtech.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "Amazon / Globalstar", "SECTEUR": "Télécommunications satellitaires", "ACTIVITE": "Amazon acquiert Globalstar, opérateur de télécommunications par satellite, afin d'intégrer une couverture satellitaire à son infrastructure existante, avec un partenariat stratégique associant Apple.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU", "FONDS": "Amazon", "DATE_DEAL": "15 avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'intégration de Globalstar dans l'écosystème Amazon implique une transformation organisationnelle et opérationnelle significative. La fusion de deux cultures d'entreprise distinctes (télécoms satellitaires / big tech) génère des besoins en leadership de transition. Le partenariat stratégique avec Apple ajoute une complexité supplémentaire en matière de gouvernance et de pilotage financier. Des postes de direction pourraient s'ouvrir chez Globalstar pour aligner les pratiques sur les standards Amazon, notamment en finance, RH et direction générale.", "PROFIL_CIBLE": "DAF transition / DG / DRH / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "WeMaintain", "SECTEUR": "PropTech / Maintenance d'ascenseurs", "ACTIVITE": "WeMaintain opère dans la maintenance d'ascenseurs, avec une approche technologique. La société a connu une croissance rapide mais également des pertes persistantes.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU (montant de l'acquisition non mentionné ; 38,8 millions d'euros correspondent aux levées de fonds cumulées depuis la création)", "FONDS": "Otis (groupe américain acquéreur) / Investisseurs historiques : IDINVEST (EURAZEO), BPI France, Red River West, Financière Saint James, The Family", "DATE_DEAL": "13 avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'intégration de WeMaintain dans un grand groupe industriel américain comme Otis génère typiquement des besoins de transformation : alignement des fonctions support, restructuration managériale, et pilotage financier post-acquisition. La mention de pertes persistantes renforce la probabilité d'un besoin en profil DAF de transition ou de transformation. Une mission d'intégration ou de Board Advisory est envisageable dans ce contexte de sortie industrielle.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "FORTE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "Société de gestion spécialisée en private equity, gérant notamment la gamme White Caps Selection et lançant un nouveau fonds evergreen.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds (nouveau millésime + nouveau fonds evergreen)", "MONTANT": "INCONNU", "FONDS": "White Caps Selection (4e millésime) + nouveau fonds evergreen", "DATE_DEAL": "30 septembre 2025", "CONTACT_FONDS": "Dalila Houd et Johan Didouche (titres non précisés)", "OPPORTUNITE": "Le lancement simultané d'un 4e millésime et d'un nouveau véhicule evergreen signale une phase de développement stratégique chez LBO France. Ces initiatives impliquent généralement un renforcement des équipes de gestion, de structuration et de reporting. Brisquard peut positionner des profils DAF/CFO expérimentés en gestion de fonds ou Board Advisors pour accompagner la gouvernance de ces nouveaux véhicules.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "Hôtel Konti (Bordeaux)", "SECTEUR": "Hôtellerie", "ACTIVITE": "Hôtel situé à Bordeaux, acquis par LBO France dans le cadre de sa stratégie d'investissement dans le secteur hôtelier.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "24 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France poursuit une stratégie active d'investissement dans l'hôtellerie, signalant un portefeuille en croissance nécessitant potentiellement des profils de direction expérimentés. Une acquisition implique souvent une phase de repositionnement opérationnel et stratégique, avec des besoins en management de transition ou en renforcement de la gouvernance au niveau de l'actif ou du portefeuille.", "PROFIL_CIBLE": "DG / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "Argos", "SECTEUR": "Private Equity", "ACTIVITE": "INCONNU", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Mouvement de dirigeant (recrutement)", "MONTANT": "INCONNU", "FONDS": "Argos", "DATE_DEAL": "19 janvier 2026", "CONTACT_FONDS": "Sophie Chateau (recrutée, titre INCONNU)", "OPPORTUNITE": "Le départ de Sophie Chateau de LBO France vers Argos crée potentiellement un besoin de remplacement chez LBO France. Par ailleurs, l'arrivée d'un nouveau profil senior chez Argos peut signaler une phase de développement ou de réorganisation. Les deux structures sont des fonds de PE actifs susceptibles de faire appel à Brisquard pour renforcer leurs équipes ou conseiller leurs participations.", "PROFIL_CIBLE": "Board advisor / DG", "TIMING": "Court terme 0-3 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity", "ACTIVITE": "Société de gestion spécialisée en private equity, notamment sur les segments Small et Mid Cap via des opérations de type LBO.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "LBO", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "INCONNU", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France est actif sur le segment Small & Mid Cap, segment générateur de nombreuses opérations de transformation nécessitant des profils de direction expérimentés. Les sociétés en portefeuille post-LBO ont régulièrement besoin de DAF, DG ou DRH pour accompagner la création de valeur. Brisquard peut positionner ses services auprès de LBO France pour le Board Advisory et le recrutement de dirigeants dans les participations.", "PROFIL_CIBLE": "DAF transition / DG / DRH / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "MOYENNE"}, {"BOITE": "Ami Labs", "SECTEUR": "Intelligence Artificielle / Tech", "ACTIVITE": "INCONNU (start-up dans le domaine de l'IA fondée par Yann Le Cun — activité précise non détaillée dans l'article)", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds", "MONTANT": "INCONNU", "FONDS": "INCONNU", "DATE_DEAL": "Mars 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Start-up IA fondée par Yann Le Cun (figure mondiale de l'IA, ex-Chief AI Scientist de Meta), en phase de levée de fonds. Ce type de structure en forte croissance génère typiquement des besoins rapides en structuration managériale (DAF, DG, Board). Profil très tech/deeptech à surveiller pour advisory ou accompagnement à la professionnalisation des instances dirigeantes.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Court terme 0-3 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "Société de capital-investissement française spécialisée dans les opérations de LBO, notamment sur le segment Mid Cap.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Temporisation / Ralentissement activité Mid Cap", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "16 janvier 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France marque une pause sur son activité Mid Cap, ce qui peut signaler une période de repositionnement stratégique ou de transition dans l'équipe dirigeante. Ce type de temporisation peut générer des besoins en profils de direction (DAF, DG) pour accompagner les participations existantes en portefeuille ou préparer un redémarrage de l'activité. Brisquard peut se positionner en amont sur les sociétés du portefeuille LBO France nécessitant un renforcement managérial.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "LBO France est une société de gestion spécialisée en private equity. Elle lance un premier fonds evergreen, référencé chez Generali France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Référencement fonds / Distribution", "MONTANT": "INCONNU", "FONDS": "Fonds evergreen LBO France (référencé chez Generali France)", "DATE_DEAL": "12 novembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Le référencement d'un premier fonds evergreen chez Generali France marque une étape de développement significative pour LBO France, ouvrant un nouveau canal de distribution retail/assurance vie. Ce type d'opération s'accompagne généralement d'une structuration des équipes (direction commerciale, relations investisseurs, conformité). Opportunité limitée pour Brisquard en l'absence d'opération capitalistique directe sur une société cible.", "PROFIL_CIBLE": "NON_PERTINENT", "TIMING": "NON_PERTINENT", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "Daum'n (immeuble)", "SECTEUR": "Immobilier", "ACTIVITE": "Immeuble de bureaux ou actif immobilier faisant l'objet d'une acquisition en exclusivité par LBO France.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition (en exclusivité)", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "13 février 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'acquisition d'un actif immobilier par LBO France peut signaler une opération de repositionnement ou de valorisation d'actif, potentiellement porteuse de besoins en direction asset management ou direction générale de SPV/foncière. Toutefois, l'article ne mentionne aucune création d'entité opérationnelle ni recrutement associé. Pertinence limitée pour Brisquard à ce stade.", "PROFIL_CIBLE": "NON_PERTINENT", "TIMING": "NON_PERTINENT", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "LBO France est une société de gestion spécialisée en capital-investissement. Elle présente le 4ᵉ millésime de son fonds White Caps Selection.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Levée de fonds (présentation d'un nouveau millésime)", "MONTANT": "INCONNU", "FONDS": "LBO France – White Caps Selection (4ᵉ millésime)", "DATE_DEAL": "18 septembre 2025", "CONTACT_FONDS": "Johan Didouche (LBO France) ; Dalila Houd (LBO France) – titres exacts INCONNU", "OPPORTUNITE": "LBO France présente un nouveau millésime de son fonds White Caps Selection, signalant une activité d'investissement active. En tant que fonds de PE, LBO France génère régulièrement des besoins en management de transition ou permanent au sein de ses participations (DAF, DG, DRH). À surveiller pour identifier les nouvelles acquisitions issues de ce millésime qui créeront des besoins opérationnels.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France / Generali", "SECTEUR": "Private Equity / Assurance", "ACTIVITE": "LBO France est un fonds de private equity. Generali est un groupe d'assurance. Un deal a été annoncé entre les deux entités.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Deal (nature exacte non précisée)", "MONTANT": "INCONNU", "FONDS": "LBO France / Generali", "DATE_DEAL": "22 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "Le deal entre LBO France et Generali peut signaler une nouvelle structure de partenariat ou co-investissement générant des besoins en gouvernance. Les opérations entre fonds PE et institutionnels créent souvent des besoins en profils de direction (DAF, Board) au niveau des sociétés en portefeuille ou de la structure commune. À surveiller pour identifier les sociétés cibles concernées.", "PROFIL_CIBLE": "Board advisor / DAF transition", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France", "SECTEUR": "Private Equity / Gestion d'actifs", "ACTIVITE": "Fonds de private equity français spécialisé dans les opérations de LBO, notamment sur le segment midmarket. Cherche à relancer sa stratégie midmarket en élargissant son empreinte géographique.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Relance stratégique / Expansion géographique", "MONTANT": "INCONNU", "FONDS": "LBO France", "DATE_DEAL": "15 septembre 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "LBO France annonce une relance de sa stratégie midmarket à horizon deux ans avec une expansion géographique. Ce type de repositionnement stratégique s'accompagne généralement de recrutements au niveau direction (DG, DAF, Board) pour structurer les nouvelles implantations ou accompagner les participations cibles. Les sociétés en portefeuille midmarket constituent également des opportunités de placement de profils de direction en transformation.", "PROFIL_CIBLE": "DG / DAF transition / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "LBO France / Peqan / Archinvest / UI Investissement", "SECTEUR": "Private Equity", "ACTIVITE": "Sociétés de gestion en private equity discutant des secteurs d'investissement à privilégier ; contenu issu d'un événement ou table ronde Club Patrimoine.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "INCONNU", "MONTANT": "INCONNU", "FONDS": "LBO France / Peqan / Archinvest / UI Investissement", "DATE_DEAL": "18 juin 2025", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'article mentionne plusieurs fonds actifs (LBO France, UI Investissement notamment) qui réalisent des opérations LBO sur des PME/ETI françaises. Ces fonds génèrent régulièrement des besoins en direction générale, DAF ou board advisory au niveau des sociétés en portefeuille. À surveiller pour identifier les nouvelles prises de participation et les besoins managériaux associés.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "MWM", "SECTEUR": "Applications mobiles / Tech grand public", "ACTIVITE": "Groupe spécialisé dans le développement et l'acquisition d'applications mobiles, adoptant une stratégie de build-up pour intégrer des actifs validés par le marché.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Acquisition", "MONTANT": "INCONNU", "FONDS": "MWM (acquéreur)", "DATE_DEAL": "09 avril 2026", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "L'acquisition de Picnic par MWM marque un tournant stratégique vers un modèle de build-up inspiré de Bending Spoons. Ce type de stratégie d'intégration d'actifs génère des besoins de structuration managériale rapide : DAF pour piloter l'intégration financière et les futures opérations M&A, DG pour superviser le portefeuille d'actifs, et potentiellement un Board advisor expérimenté en stratégie de consolidation d'applications mobiles. Profil à surveiller pour Brisquard si la cadence acquisitive s'accélère.", "PROFIL_CIBLE": "DAF transition / DG / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}, {"BOITE": "Doctolib", "SECTEUR": "Santé numérique / HealthTech", "ACTIVITE": "Plateforme de prise de rendez-vous médicaux en ligne et de services de santé numérique à destination des professionnels de santé et des patients.", "CREATION": "INCONNU", "TAILLE": "INCONNU", "OPERATION": "Cession de titres sur marché secondaire", "MONTANT": "Valorisation implicite de 3,6 milliards d'euros", "FONDS": "INCONNU", "DATE_DEAL": "Quelques mois après l'annonce de la rentabilité (date précise non mentionnée)", "CONTACT_FONDS": "INCONNU", "OPPORTUNITE": "La décote de valorisation (3,6 Md€ vs 5,8 Md€ en 2022) intervient paradoxalement au moment où Doctolib atteint la rentabilité, signalant une phase de maturité et de consolidation du modèle. Ce type de transition — de la croissance à la profitabilité — génère souvent des besoins de renforcement des fonctions financières, de gouvernance et de direction générale. La pression sur la valorisation peut également accélérer des réflexions stratégiques (IPO, M&A, restructuration) nécessitant un accompagnement de haut niveau.", "PROFIL_CIBLE": "DAF transition / Board advisor", "TIMING": "Moyen terme 3-6 mois", "PRIORITE": "A_SURVEILLER"}]
 };
 
-// Init
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('heroDate').textContent = DATA.date;
-  document.getElementById('headerDate').textContent = 'Semaine du ' + DATA.date;
+  document.getElementById('headerDate').textContent = DATA.date;
   document.getElementById('kpiTotal').textContent = DATA.stats.total;
   document.getElementById('kpiForte').textContent = DATA.stats.forte;
   document.getElementById('kpiMoyenne').textContent = DATA.stats.moyenne;
   document.getElementById('kpiSurveiller').textContent = DATA.stats.surveiller;
 
-  // Météo
   const w = DATA.weather;
   if (w.ok) {
     document.getElementById('weatherWidget').innerHTML = `
-      <span class="weather-icon">${w.icon}</span>
-      <div class="weather-info">
-        <div class="weather-temp">${w.temp}°C</div>
-        <div class="weather-city">Toulouse</div>
+      <span class="w-icon">${w.icon}</span>
+      <div>
+        <div class="w-temp">${w.temp}°C · ${w.desc}</div>
+        <div class="w-city">Toulouse · ressenti ${w.feels}°C</div>
       </div>`;
   }
 
@@ -338,36 +374,36 @@ function prio(f) {
   const p = (f.PRIORITE || '').toUpperCase();
   if (p.includes('FORTE')) return 'FORTE';
   if (p.includes('MOYENNE')) return 'MOYENNE';
-  if (p.includes('A_SURVEILLER') || p.includes('À_SURVEILLER')) return 'A_SURVEILLER';
   return 'A_SURVEILLER';
 }
 
 function prioLabel(p) {
-  if (p === 'FORTE') return '🔴 Forte';
-  if (p === 'MOYENNE') return '🟡 Moyenne';
-  return '🟢 À surveiller';
+  if (p === 'FORTE')   return 'Forte';
+  if (p === 'MOYENNE') return 'Moyenne';
+  return 'À surveiller';
 }
 
 function escHtml(str) {
-  return (str || 'INCONNU').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return (str || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function renderCards(deals) {
   const grid = document.getElementById('cardsGrid');
   grid.innerHTML = '';
-  deals.forEach((f, i) => {
+  deals.forEach((f) => {
     const p = prio(f);
-    const activite = f.ACTIVITE !== 'INCONNU' ? f.ACTIVITE : '';
-    const opp = f.OPPORTUNITE !== 'INCONNU' && f.OPPORTUNITE !== 'NON_PERTINENT' ? f.OPPORTUNITE : '';
+    const activite = (f.ACTIVITE && f.ACTIVITE !== 'INCONNU') ? f.ACTIVITE : '';
+    const opp = (f.OPPORTUNITE && f.OPPORTUNITE !== 'INCONNU' && f.OPPORTUNITE !== 'NON_PERTINENT') ? f.OPPORTUNITE : '';
 
     grid.innerHTML += `
     <div class="card prio-${p}" data-prio="${p}">
+      <div class="card-stripe"></div>
       <div class="card-top">
         <div class="card-header">
           <div class="card-name">${escHtml(f.BOITE)}</div>
           <span class="prio-badge prio-${p}">${prioLabel(p)}</span>
         </div>
-        <div class="card-sector">🏢 ${escHtml(f.SECTEUR)}</div>
+        <div class="card-sector">${escHtml(f.SECTEUR)}</div>
         ${activite ? `<div class="card-activite">${escHtml(activite)}</div>` : ''}
       </div>
 
@@ -392,13 +428,13 @@ function renderCards(deals) {
 
       ${opp ? `
       <div class="card-opp">
-        <div class="card-opp-title">💼 Opportunité Brisquard</div>
+        <div class="card-opp-title">Opportunité Brisquard</div>
         <div class="card-opp-text">${escHtml(opp)}</div>
       </div>` : ''}
 
       <div class="card-footer">
-        <span class="profil-badge">👤 ${escHtml(f.PROFIL_CIBLE)}</span>
-        <span class="timing-badge">⏱ ${escHtml(f.TIMING)}</span>
+        <span class="profil-badge">${escHtml(f.PROFIL_CIBLE)}</span>
+        <span class="timing-badge">${escHtml(f.TIMING)}</span>
       </div>
     </div>`;
   });
@@ -410,7 +446,6 @@ function filterDeals(p) {
   currentFilter = p;
   document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
   document.querySelector(`[data-p="${p}"]`).classList.add('active');
-
   const cards = document.querySelectorAll('.card');
   let visible = 0;
   cards.forEach(c => {
